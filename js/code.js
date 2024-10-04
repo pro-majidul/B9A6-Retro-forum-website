@@ -5,16 +5,17 @@ htmlTag.setAttribute("data-theme", "light")
 
 //catch all lets discuss api  in fetch 
 
-const discussCardApi = () => {
+const discussCardApi = (search) => {
     fetch('https://openapi.programming-hero.com/api/retro-forum/posts')
         .then(res => res.json())
-        .then(data => AllDiscussCard(data.posts))
+        .then(data => AllDiscussCard(data.posts , search))
         .catch(error => console.log(error))
 
 }
 
-const AllDiscussCard = (cards) => {
+const AllDiscussCard = (cards ) => {
     const cardSection = document.getElementById('discuss-card-container');
+    cardSection.innerHTML = ""
     cards.forEach(ele => {
         const card = document.createElement('div');
         card.innerHTML = `
@@ -115,12 +116,21 @@ const GetLatestPostCard = (cards) => {
 
 
 
+// search deya category ke khuje ber korbe
+const daynamicSearch = (search)=>{
+    fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${search}`)
+        .then(res=>res.json())
+        .then(data => AllDiscussCard(data.posts))
+    
+
+}
+// click the search button and get the value
+const searchbutton = ()=>{
+    const inputField = document.getElementById('input-field').value ;
+    daynamicSearch(inputField);
 
 
-
-
-
-
+}
 
 // document.querySelectorAll(".button-Clicked").forEach(button =>{ button.addEventListener("click" , (e)=>{
 //     e.preventDefault();
