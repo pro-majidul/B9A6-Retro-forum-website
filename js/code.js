@@ -52,8 +52,8 @@ const AllDiscussCard = (cards ) => {
                                     <p>${ele.posted_time} min</p>
                                 </div>
                             </div>
-                            <div  class="bg-[#10B981] button-Clicked hover:bg-[#797DFC  ]  p-2 rounded-full w-10 h-10">
-                                <img  class="w-8" src="https://img.icons8.com/?size=50&id=12580&format=png" alt="">
+                            <div class="bg-[#10B981] hover:bg-[#797DFC  ]  p-2 rounded-full w-10 h-10">
+                                <img id="button-clicked" onclick="buttonClicked()" class="w-8" src="https://img.icons8.com/?size=50&id=12580&format=png" alt="">
                             </div>
                         </div>
 
@@ -132,25 +132,28 @@ const searchbutton = ()=>{
 
 }
 
-// document.querySelectorAll(".button-Clicked").forEach(button =>{ button.addEventListener("click" , (e)=>{
-//     e.preventDefault();
-//     const card = button.closest('.border');
-//     const title = card.querySelector('.title').innerText;
-//     const viewCount = card.querySelector('.view-count').innerText;
-//     const buttonId = document.getElementById('marks-read-card');
-//     const buttons = document.createElement('div');
-//     buttons.innerHTML = `
-//         <div class="bg-white h-12 rounded-xl p-2 flex gap-5">
-//             <p class="font-bold">${title}</p>
-//             <div class="flex items-center md:gap-3">
-//                 <img class="w-5" src="https://img.icons8.com/?size=30&id=60022&format=png" alt="">
-//                 <p>${viewCount}</p>
-//             </div>
-//         </div>
-//     `;
-//     buttonId.appendChild(buttons);
-// });
-// })
+const buttonClicked =(e)=>{
+    // e.preventDefault();
+    const title = document.getElementById('title').innerText;
+    
+    const viewCount = document.getElementById('view-count').innerText;
+    const buttonId = document.getElementById('marks-read-card');
+    const buttons = document.createElement('div');
+    buttons.innerHTML = `
+    <div  class="bg-white h-12 rounded-xl p-2 flex gap-5">
+    <p class="font-bold">${title}</p>
+    <div>
+    <div  class="flex items-center md:gap-3  ">
+    <img class="w-5" src="https://img.icons8.com/?size=30&id=60022&format=png" alt="">
+    <p>${viewCount}</p>
+    </div>
+    </div>
+    
+    </div>`
+    ;
+    buttonId.appendChild(buttons);
+}
+
 
 
 
