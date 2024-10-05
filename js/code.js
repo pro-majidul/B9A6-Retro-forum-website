@@ -52,8 +52,8 @@ const AllDiscussCard = (cards ) => {
                                     <p>${ele.posted_time} min</p>
                                 </div>
                             </div>
-                            <div class="bg-[#10B981] hover:bg-[#797DFC  ]  p-2 rounded-full w-10 h-10">
-                                <img id="button-clicked" onclick="buttonClicked()" class="w-8" src="https://img.icons8.com/?size=50&id=12580&format=png" alt="">
+                            <div id="button-clicked" onclick="buttonClicked('${ele?.title.split("'").join("")}', '${ele?.view_count}')" class="bg-[#10B981] hover:bg-[#797DFC]  p-2 rounded-full w-10 h-10">
+                                <img class="w-8" src="https://img.icons8.com/?size=50&id=12580&format=png" alt="">
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@ const GetLatestPostCard = (cards) => {
     cards.forEach((e) => {
         const allCards = document.createElement('div');
         allCards.innerHTML = `
-            <div class="card card-compact bg-base-100 w-96 shadow-xl">
+            <div class="card card-compact bg-base-100  w-96 h-[450px] shadow-xl">
                     <figure>
                         <img src="${e.cover_image}"
                             alt="Shoes" />
@@ -132,23 +132,28 @@ const searchbutton = ()=>{
 
 }
 
-const buttonClicked =(e)=>{
-    // e.preventDefault();
-    const title = document.getElementById('title').innerText;
-    
-    const viewCount = document.getElementById('view-count').innerText;
+const buttonClicked =(title ,view)=>{
+
+    // button e clcick korle marks as read er counter ek ek kore barbeb
+    const markCount = document.getElementById('mark-as-count').innerText;
+    const number = parseInt(markCount);
+    let sum = number + 1;
+    document.getElementById('mark-as-count').innerText= sum;
+
+
+
+
     const buttonId = document.getElementById('marks-read-card');
     const buttons = document.createElement('div');
     buttons.innerHTML = `
-    <div  class="bg-white h-12 rounded-xl p-2 flex gap-5">
-    <p class="font-bold">${title}</p>
+    <div  class="bg-orange-500 my-4 w-11/12 mx-auto  rounded-xl p-3 flex items-center gap-3">
+    <p class="font-bold w-10/12">${title}</p>
     <div>
-    <div  class="flex items-center md:gap-3  ">
+    <div  class="flex items-center gap-1 ">
     <img class="w-5" src="https://img.icons8.com/?size=30&id=60022&format=png" alt="">
-    <p>${viewCount}</p>
+    <p>${view}</p>
     </div>
-    </div>
-    
+    </div>  
     </div>`
     ;
     buttonId.appendChild(buttons);
