@@ -92,7 +92,8 @@ const GetLatestPostCard = (cards) => {
                     <div class="card-body">
                         <div class="flex justify-between items-center gap-3">
                             <img class="w-5" src="https://img.icons8.com/?size=50&id=23&format=png" alt="">
-                            <p class="text-sm text-gray-500">${e.author.posted_date}</p>
+                            ${e.author.posted_date ? e.author.posted_date : 'No Date Published'}
+                            <p class="text-sm text-gray-500"></p>
                         </div>
                         <h2 class="card-title">${e.title}</h2>
                         <p>${e.description} </p>
@@ -102,7 +103,7 @@ const GetLatestPostCard = (cards) => {
                                 alt="">
                             <div>
                                 <p class="text-sm font-bold">${e.author.name}</p>
-                                <p>${e.author.designation}</p>
+                                ${e.author.designation ? e.author.designation : "Unknown"}
                             </div>
                         </div>
                     </div>
